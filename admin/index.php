@@ -314,10 +314,14 @@
                       <p>เพิ่มข่าว</p>
                     </a>
                   </li>
-                  
                 </ul>
               </li>
-              
+              <li class="nav-item">
+                <a href="./generate/theme.html" class="nav-link">
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Theme Generate</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-box-seam-fill"></i>
@@ -347,8 +351,24 @@
                   </li>
                 </ul>
               </li>
-              
-
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-clipboard-fill"></i>
+                  <p>
+                    Layout Options
+                    <span class="nav-badge badge text-bg-secondary me-3">6</span>
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./layout/unfixed-sidebar.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Default Sidebar</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
             <!--end::Sidebar Menu-->
           </nav>
@@ -382,7 +402,7 @@
           <!--begin::Container-->
           <div class="container-fluid">
             
-            <?php
+          <?php
             $page = $_GET["page"] ?? "";
             if($page=="add_activity"){
               include "add_activity.php";
@@ -436,7 +456,7 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../../dist/js/adminlte.js"></script>
+    <script src="dist/js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
