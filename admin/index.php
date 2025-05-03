@@ -303,13 +303,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="./" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>ข่าวสาร</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="?page=add_activity" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>เพิ่มข่าว</p>
                     </a>
@@ -383,7 +383,15 @@
           <div class="container-fluid">
             
             <?php
-            include "activity.php";
+            $page = $_GET["page"] ?? "";
+            if($page=="add_activity"){
+              include "add_activity.php";
+            }elseif($page=="update_activity"){
+              include "update_activity.php";
+            }else{
+              include "activity.php";
+            }
+            
             ?>
             
           </div>
