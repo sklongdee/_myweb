@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+  $_SESSION["alert"]="login_fail";
+  header("Location: ../");
+  exit;
+}
+?>
 <!doctype html>
 <html lang="en">
   <!--begin::Head-->
@@ -221,7 +229,7 @@
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline"><?=$_SESSION["username"]?></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
@@ -251,7 +259,7 @@
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                  <a href="../logout.php" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
                 <!--end::Menu Footer-->
               </ul>
@@ -315,32 +323,32 @@
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li><!--
               <li class="nav-item">
                 <a href="./generate/theme.html" class="nav-link">
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Theme Generate</p>
                 </a>
-              </li>
+              </li>-->
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-box-seam-fill"></i>
                   <p>
-                    Widgets
+                    จัดการผู้ใช้
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./widgets/small-box.html" class="nav-link">
+                    <a href="./?page=user" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Small Box</p>
+                      <p>ผู้ใช้งานระบบ</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./widgets/info-box.html" class="nav-link">
+                    <a href="./?page=add_user" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>info Box</p>
+                      <p>เพิ่มผู้ใช้งาน</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -408,6 +416,10 @@
               include "add_activity.php";
             }elseif($page=="update_activity"){
               include "update_activity.php";
+            }elseif($page=="user"){
+              include "user.php";
+            }elseif($page=="add_user"){
+              include "add_user.php";
             }else{
               include "activity.php";
             }

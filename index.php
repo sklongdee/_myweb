@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,14 +40,30 @@
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
             </div>
         </div>
     </nav>
-
+    <?php
+      $alert = $_SESSION["alert"]??"";
+      if($alert=="passward_fail"){
+        echo '<div class="alert alert-danger" role="alert">
+        รหัสผ่านไม่ถูกต้อง!
+        </div>';
+        unset($_SESSION["alert"]);
+      }elseif($alert=="login_fail"){
+        echo '<div class="alert alert-danger" role="alert">
+        คุณยังไม่ได้ลงชื่อเข้าใช้ระบบ!
+        </div>';
+        unset($_SESSION["alert"]);
+      }elseif($alert=="username_fail"){
+        echo '<div class="alert alert-danger" role="alert">
+        ไม่พบชื่อผู้ใช้!
+        </div>';
+        unset($_SESSION["alert"]);
+      }
+    ?>
+      
     <?php
     include "main.php";
     ?>
@@ -53,3 +72,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form method="POST" action="login_verify.php">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" aria-describedby="username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
