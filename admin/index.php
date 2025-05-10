@@ -420,6 +420,8 @@ if (!isset($_SESSION["user_id"])) {
               include "user.php";
             }elseif($page=="add_user"){
               include "add_user.php";
+            }elseif($page=="update_user"){
+              include "update_user.php";
             }else{
               include "activity.php";
             }

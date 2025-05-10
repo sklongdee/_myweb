@@ -1,15 +1,29 @@
 <h1>หน้าผู้ใช้งานทั้งหมด</h1>
+
+
 <?php
-    $alert = $_SESSION["alert"]??"";
-    if($alert=="success"):
-?>
-<div class="alert alert-success" role="alert">
-  เพิ่มข้อมูลผู้ใช้สำเร็จ!
-</div>
-<?php
-    endif;
+
+  function alert($color,$text){
+    echo '
+    <div class="alert alert-'.$color.'" role="alert">
+      '.$text.'
+    </div>
+    ';
     unset($_SESSION["alert"]);
+  }
+    $alert = $_SESSION["alert"]??"";
+    if($alert=="success"){
+      alert("success","เพิ่มข้อมูลผู้ใช้เรียบร้อยแล้ว!");
+    }elseif($alert=="updateUserSuccess"){
+      alert("success","แก้ไขข้อมูลผู้ใช้เรียบร้อยแล้ว!");
+    }elseif($alert=="updatePasswordSuccess"){
+      alert("success","แก้ไขรหัสผ่านผู้ใช้เรียบร้อยแล้ว!");
+    }elseif($alert=="deleteUserSuccess"){
+      alert("danger","ลบผู้ใช้เรียบร้อยแล้ว!");
+    }
 ?>
+
+
 <table class="table">
   <thead>
     <tr>
@@ -28,16 +42,19 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-    // output data of each row
+      $count=1;
     while($row = $result->fetch_assoc()) {
     ?>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row"><?=$count++?></th>
       <td><?=$row["name"]?></td>
       <td><?=$row["username"]?></td>
       <td><?=$row["department"]?></td>
       <td><?=$row["role"]?></td>
-      <td>แก้ไข ลบ</td>
+      <td>
+        <a href="./?page=update_user&user_id=<?=$row["id"]?>"><i class="bi bi-pencil-square"></i></a>
+        <a onclick="return confirm('คุณแน่ใจที่จะลบข้อมูลนี้!!')" href="./delete_user.php?id=<?=$row["id"]?>"><i class="bi bi-trash"></i></a> 
+      </td>
     </tr>
     <?php
     }
