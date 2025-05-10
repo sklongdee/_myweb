@@ -45,22 +45,20 @@ session_start();
         </div>
     </nav>
     <?php
+      function alert($color,$text){
+        echo '
+        <div class="alert alert-'.$color.' text-center" role="alert">
+        '.$text.'
+        </div>';
+        unset($_SESSION["alert"]);
+      }
       $alert = $_SESSION["alert"]??"";
       if($alert=="passward_fail"){
-        echo '<div class="alert alert-danger" role="alert">
-        รหัสผ่านไม่ถูกต้อง!
-        </div>';
-        unset($_SESSION["alert"]);
+        alert("danger","รหัสผ่านไม่ถูกต้อง!");
       }elseif($alert=="login_fail"){
-        echo '<div class="alert alert-danger" role="alert">
-        คุณยังไม่ได้ลงชื่อเข้าใช้ระบบ!
-        </div>';
-        unset($_SESSION["alert"]);
+        alert("danger","คุณยังไม่ได้ลงชื่อเข้าใช้ระบบ!");
       }elseif($alert=="username_fail"){
-        echo '<div class="alert alert-danger" role="alert">
-        ไม่พบชื่อผู้ใช้!
-        </div>';
-        unset($_SESSION["alert"]);
+        alert("danger","ไม่พบชื่อผู้ใช้!");
       }
     ?>
       
