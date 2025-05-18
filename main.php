@@ -41,7 +41,10 @@
             <div class="card h-100">
             <img src="img/<?=$row["activity_img"]?>" class="card-img-top" alt="...">
             <div class="card-body">
-                <p class="card-text"><?=$row["activity_title"]?></p>
+                <a href="?page=activity_detail&activity_id=<?=$row["activity_id"]?>"
+                    style="text-decoration: none; color:#000"> 
+                    <p class="card-text"><?=$row["activity_title"]?></p>
+                </a>
             </div>
             <div class="card-footer">
                 <small class="text-body-secondary"><?=$row["activity_date"]?></small>

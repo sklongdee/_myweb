@@ -63,7 +63,13 @@ session_start();
     ?>
       
     <?php
-    include "main.php";
+    $page = $_GET["page"] ?? "";
+    if($page=="activity_detail"){
+      include "activity_detail.php";
+    }else{
+      include "main.php";
+    }
+    
     ?>
     
 
